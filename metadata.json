@@ -1,0 +1,14 @@
+{
+  "name": "bas-zabbix",
+  "version": "0.1.0",
+  "author": "bazzie",
+  "summary": "Puppet module for managing Zabbix",
+  "license": "Apache 2.0",
+  "source": "https://github.com/bazzie/puppet-zabbix.git",
+  "project_page": "https://github.com/bazzie/puppet-zabbix",
+  "issues_url": "https://github.com/bazzie/puppet-zabbix/issues",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
