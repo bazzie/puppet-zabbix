@@ -21,7 +21,7 @@ class zabbix::server (
   if $manage_repo {
     if ! defined(Class['zabbix::repo']) {
       class { 'zabbix::repo':
-        zabbix_version => $::zabbix_version,
+        zabbix_version => $zabbix_version,
       }
     }
     Package["zabbix-server-${db}"] {require => Class['zabbix::repo']}
