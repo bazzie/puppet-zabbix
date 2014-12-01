@@ -31,4 +31,23 @@ class zabbix::server (
     ensure  => present,
   }
 
+
+  package { "zabbix-web-${db}":
+    ensure  => present,
+    require => Package["zabbix-server-${db}"],
+    before  => [
+      File['/etc/zabbix/web/zabbix.conf.php'],
+        Package['zabbix-web']
+      ],
+  }
+      
+  package { 'zabbix-web':
+    ensure => present,
+  }
+
+
+
+
+
+
 }
