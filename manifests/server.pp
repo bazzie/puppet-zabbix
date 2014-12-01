@@ -4,6 +4,8 @@ class zabbix::server (
   $manage_repo      = $zabbix::params::manage_repo,
   $zabbix_version   = $zabbix::params::zabbix_version,
   $include_dir      = $zabbix::params::include_dir,
+  $listen_port      = $zabbix::params::listen_port,
+  
 ) inherits zabbix::params {
   
   
@@ -59,6 +61,32 @@ class zabbix::server (
     ],
   }
 
+  file { '/etc/zabbix/zabbix_server.conf':
+    ensure  => present,
+    owner   => 'zabbix',
+    group   => 'zabbix',
+    mode    => '0640',
+    notify  => Service['zabbix-server'],
+    require => Package["zabbix-server-${db}"],
+    replace => true,
+    content => template('zabbix/zabbix_server.conf.erb'),
+  }
 
+  file { '/etc/zabbix/web/zabbix.conf.php':
+    ensure  => present,
+    owner   => 'zabbix',
+    group   => 'zabbix',
+    mode    => '0644',
+    notify  => Service['zabbix-server'],
+    replace => true,
+    content => template('zabbix/zabbix.conf.php.erb'),
+  }
+
+  file { $include_dir:
+    ensure  => directory,
+    owner   => 'zabbix',
+    group   => 'zabbix',
+    require => File['/etc/zabbix/zabbix_server.conf'],
+  }
 
 }
