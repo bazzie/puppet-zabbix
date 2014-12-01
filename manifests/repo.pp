@@ -5,7 +5,7 @@ class zabbix::repo(
   yumrepo { 'zabbix':
         name     => "Zabbix_${::operatingsystemmajrelease}_${::architecture}",
         descr    => "Zabbix_${::operatingsystemmajrelease}_${::architecture}",
-        baseurl  => "http://repo.zabbix.com/zabbix/${::zabbix_version}/rhel/${::operatingsystemmajrelease}/${::architecture}/",
+        baseurl  => "http://repo.zabbix.com/zabbix/${zabbix_version}/rhel/${::operatingsystemmajrelease}/${::architecture}/",
         gpgcheck => '1',
         gpgkey   => 'http://repo.zabbix.com/RPM-GPG-KEY-ZABBIX',
         priority => '1',
