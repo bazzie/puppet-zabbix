@@ -3,6 +3,7 @@ class zabbix::server (
   $db_type          = $zabbix::params::db_type,
   $manage_repo      = $zabbix::params::manage_repo,
   $zabbix_version   = $zabbix::params::zabbix_version,
+  $include_dir      = $zabbix::params::include_dir,
 ) inherits zabbix::params {
   
   
@@ -45,8 +46,18 @@ class zabbix::server (
     ensure => present,
   }
 
+  Service['zabbix-server'] { enable     => true }
 
-
+  service { 'zabbix-server':
+    ensure     => running,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => [
+      Package["zabbix-server-${db}"],
+      File[$include_dir],
+      File['/etc/zabbix/zabbix_server.conf']
+    ],
+  }
 
 
 
