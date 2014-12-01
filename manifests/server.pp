@@ -3,7 +3,7 @@ class zabbix::server (
   $db_type          = zabbix::params::db_type,
   $manage_repo      = zabbix::params::manage_repo,
   $zabbix_version   = zabbix::params::version,
-){
+) inherits zabbix::params {
   
   
   case $db_type {
