@@ -2,7 +2,7 @@ class zabbix::server (
   $zabbix_url       = ' ', 
   $db_type          = $zabbix::params::db_type,
   $manage_repo      = $zabbix::params::manage_repo,
-  $zabbix_version   = $zabbix::params::version,
+  $zabbix_version   = $zabbix::params::zabbix_version,
 ) inherits zabbix::params {
   
   
@@ -21,7 +21,7 @@ class zabbix::server (
   if $manage_repo {
     if ! defined(Class['zabbix::repo']) {
       class { 'zabbix::repo':
-        zabbix_version => $zabbix_version,
+        zabbix_version => $::zabbix_version,
       }
     }
     Package["zabbix-server-${db}"] {require => Class['zabbix::repo']}
