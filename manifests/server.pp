@@ -92,7 +92,13 @@ class zabbix::server (
   if $manage_vhost {
     include apache
     
-    #apache::mod { 'php': }
+    class { 'apache::mod::php': 
+      content => '
+        AddHandler php5-script .php
+        AddType text/html .php',
+        path  => "${::apache::params::lib_path}/libphp5.so",
+    }
+    
     if $apache_use_ssl {
       $apache_listen_port = '443'
  
