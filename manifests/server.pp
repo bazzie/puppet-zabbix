@@ -91,14 +91,11 @@ class zabbix::server (
 
   if $manage_vhost {
     include apache
-    # Check if we use ssl. If so, we also create an non ssl
-    # vhost for redirect traffic from non ssl to ssl site.
+    
+    apache::mod { 'php': }
     if $apache_use_ssl {
-      # Listen port
       $apache_listen_port = '443'
  
-      # We create nonssl vhost for redirecting non ssl
-      # traffic to https.
       apache::vhost { "${zabbix_url}_nonssl":
         docroot        => '/usr/share/zabbix',
         manage_docroot => false,
@@ -114,7 +111,6 @@ class zabbix::server (
         ],
       }
     } else {
-      # So no ssl, so default port 80
       $apache_listen_port = '80'
     }
 
