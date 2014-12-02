@@ -92,7 +92,7 @@ class zabbix::server (
   if $manage_vhost {
     include apache
     
-    apache::mod { 'php': }
+    #apache::mod { 'php': }
     if $apache_use_ssl {
       $apache_listen_port = '443'
  
