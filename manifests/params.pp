@@ -2,6 +2,7 @@ class zabbix::params {
   
   $db_type            = 'postgresql'
   $manage_repo        = true 
+  $manage_vhost       = true
   $zabbix_version     = '2.4'
   $zabbix_timezone    = 'Europe/Amsterdam'
   $include_dir        = '/etc/zabbix/zabbix_server.conf.d'
