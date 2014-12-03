@@ -1,6 +1,6 @@
 class zabbix::database(
   $manage_database = '',
-  $dbtype          = '',
+  $db_type          = '',
   $zabbix_type     = '',
   $zabbix_version  = '',
   $db_name         = '',
@@ -9,7 +9,7 @@ class zabbix::database(
   $db_host         = '',
 ) {
   if $manage_database == true {
-    case $dbtype {
+    case $db_type {
       'postgresql': {
         class { 'zabbix::database::postgresql':
           zabbix_type    => $zabbix_type,
