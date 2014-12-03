@@ -38,7 +38,7 @@ class zabbix::postgresql (
     mode    => '0600',
     owner   => 'postgres',
     group   => 'postgres',
-    require => Postgresql::Server::Db[$db_name],
+    #require => Postgresql::Server::Db[$db_name],
   }
 
   case $zabbix_type {
