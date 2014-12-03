@@ -10,10 +10,14 @@ class zabbix::postgresql (
   $zabbix_path   = "/usr/share/doc/zabbix-*-pgsql-${zabbix_version}*/create"
   $postgres_home = '/var/lib/pgsql'
 
+  file {'/var/lib/postgresql':
+    ensure => directory,   
+  } 
+
   user {'postgresql':
     ensure     => present,
     managehome => true,
-    home       => '/var/lob/pgsql'
+    home       => '/var/lib/pgsql'
   }
 
   package {'postgresql':
