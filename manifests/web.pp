@@ -4,7 +4,7 @@ class zabbix::web (
   $zabbix_url       = $zabbix::params::zabbix_url,
   $db_host          = $zabbix::params::db_host,
   $zabbix_server    = $zabbix::params::zabbix_server,
-  $listenport       = $zabbix::params::server_listenport,
+  $listenport       = $zabbix::params::listen_port,
   
   
 ) inherits zabbix::params {
