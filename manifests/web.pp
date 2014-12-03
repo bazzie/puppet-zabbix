@@ -21,10 +21,18 @@ class zabbix::web (
     }
   }
   
+   if $manage_repo {
+    if ! defined(Class['zabbix::repo']) {
+      class { 'zabbix::repo':
+        zabbix_version => $zabbix_version,
+      }
+    }
+    Package["zabbix-web-${db}"] {require => Class['zabbix::repo']}
+  }
+  
   package { "zabbix-web-${db}":
     ensure  => present,
-    require => Package["zabbix-server-${db}"],
-    before  => [
+     before  => [
       File['/etc/zabbix/web/zabbix.conf.php'],
         Package['zabbix-web']
       ],
