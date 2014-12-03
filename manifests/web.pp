@@ -48,7 +48,6 @@ class zabbix::web (
     owner   => 'zabbix',
     group   => 'zabbix',
     mode    => '0644',
-    notify  => Service['zabbix-server'],
     replace => true,
     content => template('zabbix/zabbix.conf.php.erb'),
   }
