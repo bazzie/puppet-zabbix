@@ -7,6 +7,7 @@ class zabbix::params {
   $zabbix_version     = '2.4'
   $zabbix_timezone    = 'Europe/Amsterdam'
   $zabbix_url         = 'zabbix'
+  $zabbix_server      = 'zabbix'
   $include_dir        = '/etc/zabbix/zabbix_server.conf.d'
   $listen_port        = undef
   $db_host             = 'localhost'

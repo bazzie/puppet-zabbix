@@ -2,7 +2,8 @@ class zabbix::web (
   
   $db_type          = $zabbix::params::db_type,
   $zabbix_url       = $zabbix::params::zabbix_url,
-  $db_host          = $zabbix::params::db_host,  
+  $db_host          = $zabbix::params::db_host,
+  $zabbix_server    = $zabbix::params::zabbix_server,
   
   
   
