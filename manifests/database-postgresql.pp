@@ -1,4 +1,4 @@
-class zabbix::database::postgresql (
+class zabbix::postgresql (
   $zabbix_type    = '',
   $zabbix_version = '',
   $db_host        = '',
