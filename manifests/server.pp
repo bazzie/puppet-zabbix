@@ -1,6 +1,7 @@
 class zabbix::server (
   $zabbix_url       = $zabbix::params::zabbix_url, 
   $db_type          = $zabbix::params::db_type,
+  $db_host          = $zabbix::params::db_host,
   $manage_repo      = $zabbix::params::manage_repo,
   $zabbix_version   = $zabbix::params::zabbix_version,
   $include_dir      = $zabbix::params::include_dir,
