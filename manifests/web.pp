@@ -30,6 +30,13 @@ class zabbix::web (
     Package["zabbix-web-${db}"] {require => Class['zabbix::repo']}
   }
   
+  user {'zabbix':
+     ensure => present,
+     managehome => true,
+     before => Package['zabbix-web']
+  }
+  
+  
   package { "zabbix-web-${db}":
     ensure  => present,
      before  => [
