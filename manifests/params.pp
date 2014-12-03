@@ -9,7 +9,7 @@ class zabbix::params {
   $zabbix_url         = 'zabbix'
   $include_dir        = '/etc/zabbix/zabbix_server.conf.d'
   $listen_port        = undef
-  $dbhost             = 'localhost'
+  $db_host             = 'localhost'
   $dbname             = 'zabbix'
   $dbschema           = ''
   $dbuser             = 'zabbix'
