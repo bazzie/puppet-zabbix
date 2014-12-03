@@ -14,7 +14,7 @@ class zabbix::postgresql (
     ensure => directory,   
   } 
 
-  user {'postgresql':
+  user {'postgres':
     ensure     => present,
     managehome => true,
     home       => '/var/lib/pgsql'
