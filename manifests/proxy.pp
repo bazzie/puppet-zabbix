@@ -72,15 +72,4 @@ class zabbix::proxy (
     require => File['/etc/zabbix/zabbix_proxy.conf'],
   }
   
-  class { 'zabbix::database':
-    manage_database => $manage_database,
-    db_type => $proxy_db_type,
-    zabbix_type => 'proxy',
-    zabbix_version => $zabbix_version,
-    db_name => $db_name,
-    db_user => $db_user,
-    db_pass => $db_password,
-    db_host => $db_host,
-    before => Service['zabbix-proxy'],
-  }
 }
