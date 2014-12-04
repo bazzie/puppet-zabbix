@@ -31,10 +31,10 @@ class zabbix::params {
   $proxy_listenport     = '10051'
   $proxy_sourceip       = ''
   $proxy_dbhost         = ''
-  $proxy_dbname         = ''
+  $proxy_dbname         = 'zabbix'
   $proxy_dbschem        = ''
-  $proxy_dbuser         = ''
-  $proxy_dbpassword     = ''
+  $proxy_dbuser         = 'zabbix'
+  $proxy_dbpassword     = 'zabbix'
   $proxy_dbport         = ''  
 
   }
