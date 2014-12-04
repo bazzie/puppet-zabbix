@@ -1,7 +1,7 @@
 class zabbix::postgresql (
   $zabbix_type    = '',
   $zabbix_version = '',
-  $db_host        = $zabbix::database::db_host,
+  $db_host        = '',
   $db_name        = '',
   $db_user        = '',
   $db_pass        = '',

@@ -12,20 +12,22 @@ class zabbix::proxy (
   $zabbix_server_port      = $zabbix::params::proxy_zabbixport,
   $listenport              = $zabbix::params::proxy_listenport,
   $sourceip                = $zabbix::params::proxy_sourceip,
-  $dbhost                  = $zabbix::params::proxy_dbhost,
-  $dbname                  = $zabbix::params::proxy_dbname,
-  $dbuser                  = $zabbix::params::proxy_dbuser,
-  $dbpassword              = $zabbix::params::proxy_dbpassword,
-  $dbport                  = $zabbix::params::proxy_dbport,
+  $proxy_db_type                  = $zabbix::params::proxy_dbtype,
+  $db_host                  = $zabbix::params::proxy_dbhost,
+  $db_name                  = $zabbix::params::proxy_dbname,
+  $db_user                  = $zabbix::params::proxy_dbuser,
+  $db_password              = $zabbix::params::proxy_dbpassword,
+  $db_port                  = $zabbix::params::proxy_dbport,
+
   
 ) inherits zabbix::params {
   
-  case $db_type {
+  case $proxy_db_type {
     'postgresql': {
       $db = 'pgsql'
     }
   default: {
-     fail("Database type not recognized: ${db_type}")
+     fail("Database type not recognized: ${proxy_db_type}")
   }
  }
 
@@ -68,5 +70,17 @@ class zabbix::proxy (
   file { $include_dir:
     ensure => directory,
     require => File['/etc/zabbix/zabbix_proxy.conf'],
+  }
+  
+  class { 'zabbix::database':
+    manage_database => $manage_database,
+    db_type => $proxy_db_type,
+    zabbix_type => 'proxy',
+    zabbix_version => $zabbix_version,
+    db_name => $db_name,
+    db_user => $db_user,
+    db_pass => $db_password,
+    db_host => $db_host,
+    before => Service['zabbix-proxy'],
   }
 }
