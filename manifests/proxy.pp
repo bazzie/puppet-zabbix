@@ -16,7 +16,7 @@ class zabbix::proxy (
   $db_host                 = $zabbix::params::proxy_dbhost,
   $db_name                 = $zabbix::params::proxy_dbname,
   $db_user                 = $zabbix::params::proxy_dbuser,
-  $db_password             = $zabbix::params::proxy_dbpassword,
+  $db_pass                 = $zabbix::params::proxy_dbpassword,
   $db_port                 = $zabbix::params::proxy_dbport,
 
   
