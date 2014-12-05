@@ -12,7 +12,7 @@ class zabbix::proxy (
   $zabbix_server_port      = $zabbix::params::proxy_zabbixport,
   $listenport              = $zabbix::params::proxy_listenport,
   $sourceip                = $zabbix::params::proxy_sourceip,
-  $proxy_dbtype           = $zabbix::params::proxy_dbtype,
+  $proxy_dbtype            = $zabbix::params::proxy_dbtype,
   $db_host                 = $zabbix::params::proxy_dbhost,
   $db_name                 = $zabbix::params::proxy_dbname,
   $db_user                 = $zabbix::params::proxy_dbuser,

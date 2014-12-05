@@ -32,10 +32,10 @@ class zabbix::params {
   $proxy_sourceip       = ''
   $proxy_dbtype         = 'postgresql'
   $proxy_dbhost         = 'localhost'
-  $proxy_dbname         = 'zabbix'
+  $proxy_dbname         = 'zabbix-proxy'
   $proxy_dbschem        = ''
-  $proxy_dbuser         = 'zabbix'
-  $proxy_dbpassword     = 'zabbix'
+  $proxy_dbuser         = 'zabbix-proxy'
+  $proxy_dbpassword     = 'zabbix-proxy'
   $proxy_dbport         = '5432'  
 
   }
