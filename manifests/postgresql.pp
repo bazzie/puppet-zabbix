@@ -20,9 +20,9 @@ class zabbix::postgresql (
     home       => '/var/lib/pgsql'
   }
 
-  package {'postgresql':
-    ensure => present
-  }
+#  package {'postgresql':
+#    ensure => present
+#  }
 
   # Creating database
  # postgresql::server::db { $db_name:
