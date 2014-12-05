@@ -83,13 +83,13 @@ LogFile=/var/log/zabbix/zabbix-proxy.log
 #	If set to localhost, socket is used for MySQL.
 #	If set to empty string, socket is used for PostgreSQL.
 #
-DBHost=<%= @dbhost %>
-DBName=<%= @dbname %>
+DBHost=<%= @db_host %>
+DBName=<%= @db_name %>
 <% if @dbschema %>
 DBSchema=<%= @dbschema %>
 <% end %>
-DBUser=<%= @dbuser %>
-DBPassword=<%= @dbpassword %>
+DBUser=<%= @db_user %>
+DBPassword=<%= @db_password %>
 
 ######### PROXY SPECIFIC PARAMETERS #############
 
