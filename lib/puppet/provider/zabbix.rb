@@ -1,11 +1,9 @@
 class Puppet::Provider::Zabbix < Puppet::Provider
 
-    # Require the zabbixapi gem
     def self.require_zabbix
         require "zabbixapi"    
     end
 
-    # Create the api connection
     def self.create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         if apache_use_ssl
             protocol = 'https'
@@ -20,7 +18,6 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         return zbx
     end
 
-    # Check if host exists. When error raised, return false.
     def self.check_host(host,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         begin
             zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
@@ -30,7 +27,6 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         end
     end
 
-    # Check if proxy exists. When error raised, return false.
     def self.check_proxy(host,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         begin
             require_zabbix
@@ -41,7 +37,6 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         end
     end
 
-    # Get the template id from the name.
     def self.get_template_id(zbx,template)
         if self.is_a_number?(template)
             return template
@@ -51,7 +46,6 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         end
     end
 
-    # Check if given template name exists in current host.
     def self.check_template_in_host(host,template,zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         zbx = create_connection(zabbix_url,zabbix_user,zabbix_pass,apache_use_ssl)
         template_id = self.get_template_id(zbx,template)
@@ -61,7 +55,6 @@ class Puppet::Provider::Zabbix < Puppet::Provider
         template_array.include?("#{template_id}")
     end
 
-    # Is it an number?
     def self.is_a_number?(s)
         s.to_s.match(/\A[+-]?\d+?(\.\d+)?\Z/) == nil ? false : true
     end
