@@ -12,6 +12,10 @@ class zabbix::database(
   $zabbix_path   = "/usr/share/doc/zabbix-*-pgsql-${zabbix_version}*/create"
   $postgres_home = '/var/lib/pgsql'
   
+  file { $postgres_home :
+    ensure => directory,
+  }
+  
   if ($db_host == 'localhost') {
     
     class {'postgresql::server': }
@@ -32,10 +36,6 @@ class zabbix::database(
      }
   }    
 }
-
-  file {'${postgres_home}':
-    ensure => directory,
-  }
 
   exec { 'update_pgpass':
     command => "echo ${db_host}:5432:${db_name}:${db_user}:${db_pass} >> ${postgres_home}/.pgpass",
