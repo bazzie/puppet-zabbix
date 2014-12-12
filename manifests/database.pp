@@ -33,7 +33,7 @@ class zabbix::database(
   }    
 }
 
-  file {'$postgres_home':
+  file {'${postgres_home}':
     ensure => directory,
   }
 
