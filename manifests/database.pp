@@ -106,6 +106,6 @@ class zabbix::database(
   }
 
 
-}
+
   
   
