@@ -24,10 +24,10 @@ class zabbix::database(
 
   else {
      postgresql::validate_db_connection { '$db_name':
-       database_host           => '$db_host',
-       database_username       => '$db_user',
-       database_password       => '$db_pass',
-       database_name           => '$db_name',
+       database_host           => $db_host,
+       database_username       => $db_user,
+       database_password       => $db_pass,
+       database_name           => $db_name,
      }
   }    
 
