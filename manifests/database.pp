@@ -19,7 +19,7 @@ class zabbix::database(
   if ($db_host == 'localhost') {
     
     class {'postgresql::server': }
-    class {'postgresql::client':}
+    class {'postgresql::client': }
  
     postgresql::server::db { $db_name:
       user     => $db_user,
@@ -35,7 +35,6 @@ class zabbix::database(
        database_name           => $db_name,
      }
   }    
-}
 
   exec { 'update_pgpass':
     command => "echo ${db_host}:5432:${db_name}:${db_user}:${db_pass} >> ${postgres_home}/.pgpass",
@@ -103,7 +102,9 @@ class zabbix::database(
     default: {
       fail 'Nothing to do!'
     }
-  }
+  }  
+ 
+}
 
 
 
