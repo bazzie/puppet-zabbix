@@ -1,26 +1,15 @@
-class zabbix::server (
-  $zabbix_url       = $zabbix::params::zabbix_url, 
-  $db_type          = $zabbix::params::db_type,
-  $db_host          = $zabbix::params::db_host,
-  $manage_repo      = $zabbix::params::manage_repo,
-  $zabbix_version   = $zabbix::params::zabbix_version,
-  $include_dir      = $zabbix::params::include_dir,
-  $listen_port      = $zabbix::params::listen_port,
-  
+class zabbix::server(
+  $zabbix_version          = $zabbix::params::zabbix_version,
+  $zabbix_timezone         = $zabbix::params::zabbix_timezone,
+  $manage_database         = $zabbix::params::manage_database,
+  $manage_repo             = $zabbix::params::manage_repo,
+  $db_name                 = $zabbix::params::db_name,
+  $db_user                 = $zabbix::params::db_user,
+  $db_pass                 = $zabbix::params::db_pass,
+  $db_host                 = $zabbix::params::db_host,
 ) inherits zabbix::params {
   
-  
-  case $db_type {
-    'postgresql': {
-      $db = 'pgsql'
-    }
-    'mysql': {
-      $db = 'mysql'
-    }
-    default: {
-      fail('$db_type is not recognized as a database type for Zabbix.')
-    }
-  }
+  $include_dir             = '/etc/zabbix/zabbix_server.conf.d'
   
   if $manage_repo {
     if ! defined(Class['zabbix::repo']) {
@@ -28,39 +17,43 @@ class zabbix::server (
         zabbix_version => $zabbix_version,
       }
     }
-    Package["zabbix-server-${db}"] {require => Class['zabbix::repo']}
+    Package["zabbix-server-pgsql"] {require => Class['zabbix::repo']}
   }
-  
-  package { "zabbix-server-${db}":
+
+  package { "zabbix-server-pgsql":
     ensure  => present,
   }
-
-
-  Service['zabbix-server'] { enable     => true }
+    
+  class { 'zabbix::database':
+          zabbix_type    => 'server',
+          zabbix_version => $zabbix_version,
+          db_name        => $db_name,
+          db_user        => $db_user,
+          db_pass        => $db_pass,
+          db_host        => $db_host,
+        }
 
   service { 'zabbix-server':
     ensure     => running,
     hasstatus  => true,
     hasrestart => true,
     require    => [
-      Package["zabbix-server-${db}"],
+      Package["zabbix-server-pgsql"],
       File[$include_dir],
       File['/etc/zabbix/zabbix_server.conf']
     ],
   }
 
-  file { '/etc/zabbix/zabbix_server.conf':
+file { '/etc/zabbix/zabbix_server.conf':
     ensure  => present,
     owner   => 'zabbix',
     group   => 'zabbix',
     mode    => '0640',
     notify  => Service['zabbix-server'],
-    require => Package["zabbix-server-${db}"],
+    require => Package["zabbix-server-pgsql"],
     replace => true,
     content => template('zabbix/zabbix_server.conf.erb'),
   }
-
-  
 
   file { $include_dir:
     ensure  => directory,
@@ -68,8 +61,5 @@ class zabbix::server (
     group   => 'zabbix',
     require => File['/etc/zabbix/zabbix_server.conf'],
   }
-
-  
-
 
 }
