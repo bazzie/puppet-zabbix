@@ -31,6 +31,11 @@ class zabbix::database(
        database_name           => $db_name,
      }
   }    
+}
+
+  file {$postgres_home:
+    ensure => directory,
+  }
 
   exec { 'update_pgpass':
     command => "echo ${db_host}:5432:${db_name}:${db_user}:${db_pass} >> ${postgres_home}/.pgpass",
