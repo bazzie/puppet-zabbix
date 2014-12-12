@@ -13,7 +13,9 @@ class zabbix::database(
   $postgres_home = '/var/lib/pgsql'
   
   user {'postgres':
-    ensure => present,
+    ensure      => present,
+    managehome => true,
+    home        => '/var/lib/pgsql',
   }
   
   file { $postgres_home :
