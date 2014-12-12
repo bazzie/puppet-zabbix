@@ -15,6 +15,7 @@ class zabbix::database(
   if ($db_host == 'localhost') {
     
     class {'postgresql::server': }
+    class {'postgresql::client':}
  
     postgresql::server::db { $db_name:
       user     => $db_user,
