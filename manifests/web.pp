@@ -51,6 +51,7 @@ class zabbix::web(
 
   if $manage_vhost {
     
+    class {'apache::mod::itk':}
 
     class {'::apache::mod::php':
       path         => "${::apache::params::lib_path}/libphp5.so",
