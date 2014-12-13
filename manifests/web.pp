@@ -46,7 +46,7 @@ class zabbix::web(
     group   => 'zabbix',
     mode    => '0644',
     replace => true,
-    content => template('zabbix/web/zabbix.conf.php.erb'),
+    content => template('zabbix/zabbix.conf.php.erb'),
   }
 
   if $manage_vhost {
