@@ -20,13 +20,9 @@ class zabbix::web(
         zabbix_version => $zabbix_version,
       }
     }
-    Package["zabbix-server-pgsql"] {require => Class['zabbix::repo']}
+    Package["zabbix-web-pgsql"] {require => Class['zabbix::repo']}
   }
   
-  package { "zabbix-server-pgsql":
-    ensure  => present,
-  }
-
   package { "zabbix-web-pgsql":
     ensure  => present,
     require => Package["zabbix-server-pgsql"],
