@@ -50,7 +50,12 @@ class zabbix::web(
   }
 
   if $manage_vhost {
+    class {'::apache::mod::php':
+      path         => "${::apache::params::lib_path}/libphp5.so",
+    }
+    
     include apache
+    
     if $apache_use_ssl {
       # Listen port
       $apache_listen_port = '443'
