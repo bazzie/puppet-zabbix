@@ -50,6 +50,9 @@ class zabbix::web(
   }
 
   if $manage_vhost {
+    
+    class {'apache::mod::prefork':}
+    
     class {'::apache::mod::php':
       path         => "${::apache::params::lib_path}/libphp5.so",
     }
