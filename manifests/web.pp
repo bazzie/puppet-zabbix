@@ -53,6 +53,8 @@ class zabbix::web(
     
     class {'apache::mod::prefork':}
     
+   
+    }
     class {'::apache::mod::php':
       path         => "${::apache::params::lib_path}/libphp5.so",
     }
