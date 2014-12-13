@@ -25,7 +25,6 @@ class zabbix::web(
   
   package { "zabbix-web-pgsql":
     ensure  => present,
-    require => Package["zabbix-server-pgsql"],
     before  => [
       File['/etc/zabbix/web/zabbix.conf.php'],
       Package['zabbix-web']
