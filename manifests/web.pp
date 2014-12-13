@@ -14,6 +14,10 @@ class zabbix::web(
   
 ) inherits zabbix::params {
 
+  user {'zabbix':
+    ensure => present,  
+  }
+
   if $manage_repo {
     if ! defined(Class['zabbix::repo']) {
       class { 'zabbix::repo':
