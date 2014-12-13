@@ -5,7 +5,7 @@ class zabbix::params {
   $zabbix_timezone         = 'Europe/Amsterdam'
   $zabbix_url              = 'zabbix'
   $zabbix_server           = 'zabbix'
-  
+
   $db_type          = 'postgresql'
   $db_host          = 'localhost'
   $db_name          = 'zabbix'
@@ -17,6 +17,7 @@ class zabbix::params {
   $manage_firewall  = false
   $manage_repo      = true 
   $listen_port      = '10051'
+
 
   $apache_use_ssl                 = false
   $apache_ssl_key                 = undef

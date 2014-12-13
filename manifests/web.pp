@@ -1,11 +1,16 @@
 class zabbix::web(
 
- $zabbix_url         = '',
  $apache_use_ssl     = $zabbix::params::apache_use_ssl,
  $apache_ssl_cert    = $zabbix::params::apache_ssl_cert,
  $apache_ssl_key     = $zabbix::params::apache_ssl_key,
  $apache_ssl_cipher  = $zabbix::params::apache_ssl_cipher,
  $apache_ssl_chain   = $zabbix::params::apache_ssl_chain,
+ $db_host            = '',
+ $db_name            = '',
+ $db_user            = '',
+ $db_pass            = '', 
+ $zabbix_server      = '',
+ $zabbix_url         = '',
   
 ) inherits zabbix::params {
 
