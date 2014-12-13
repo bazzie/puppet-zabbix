@@ -51,6 +51,10 @@ class zabbix::web(
 
   if $manage_vhost {
     
+    class {'apache':
+      mpm_module => 'prefork',
+
+    }
     
     class {'::apache::mod::php':
       #path         => "${::apache::params::lib_path}/libphp5.so",
@@ -59,7 +63,6 @@ class zabbix::web(
         AddType text/html .php',
     }
     
-    include apache
     
     if $apache_use_ssl {
       # Listen port
