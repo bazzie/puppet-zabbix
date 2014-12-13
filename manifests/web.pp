@@ -1,5 +1,6 @@
 class zabbix::web(
 
+ $zabbix_url         = '',
  $apache_use_ssl     = $zabbix::params::apache_use_ssl,
  $apache_ssl_cert    = $zabbix::params::apache_ssl_cert,
  $apache_ssl_key     = $zabbix::params::apache_ssl_key,
@@ -21,17 +22,18 @@ class zabbix::web(
     ensure  => present,
   }
 
-      package { "zabbix-web-pgsql":
-        ensure  => present,
-        require => Package["zabbix-server-pgsql"],
-        before  => [
-          File['/etc/zabbix/web/zabbix.conf.php'],
-          Package['zabbix-web']
-        ],
-      }
-      package { 'zabbix-web':
-        ensure => present,
-      }
+  package { "zabbix-web-pgsql":
+    ensure  => present,
+    require => Package["zabbix-server-pgsql"],
+    before  => [
+      File['/etc/zabbix/web/zabbix.conf.php'],
+      Package['zabbix-web']
+    ],
+  }
+  
+  package { 'zabbix-web':
+    ensure => present,
+  }
 
   file { '/etc/zabbix/web/zabbix.conf.php':
     ensure  => present,
@@ -44,8 +46,6 @@ class zabbix::web(
 
   if $manage_vhost {
     include apache
-    # Check if we use ssl. If so, we also create an non ssl
-    # vhost for redirect traffic from non ssl to ssl site.
     if $apache_use_ssl {
       # Listen port
       $apache_listen_port = '443'
