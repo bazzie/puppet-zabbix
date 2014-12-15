@@ -20,6 +20,10 @@ class zabbix::proxy(
     Package["zabbix-proxy-pgsql"] {require => Class['zabbix::repo']}
   }
   
+  package { 'zabbix-proxy':
+        ensure  => present,
+        require => Package["zabbix-proxy-pgsql"]
+      }
  
    class { 'zabbix::database':
      zabbix_type    => 'proxy',
