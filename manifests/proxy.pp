@@ -38,6 +38,17 @@ class zabbix::proxy(
      db_host        => $db_host,
    }
   
+    service { 'zabbix-proxy':
+    ensure     => running,
+    hasstatus  => true,
+    hasrestart => true,
+    require    => [
+      Package["zabbix-proxy-pgsql"],
+#      File[$include_dir],
+      File['/etc/zabbix/zabbix_proxy.conf']
+    ],
+  }
+  
     file { '/etc/zabbix/zabbix_proxy.conf':
     ensure  => present,
     owner   => 'zabbix',
