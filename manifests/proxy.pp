@@ -3,6 +3,7 @@ class zabbix::proxy(
   $zabbix_version          = $zabbix::params::zabbix_version,
   $manage_database         = $zabbix::params::manage_database,
   $manage_repo             = $zabbix::params::manage_repo,
+  $mode                    = $zabbix::params::proxymode,
   $db_name                 = $zabbix::params::db_name,
   $db_user                 = $zabbix::params::db_user,
   $db_pass                 = $zabbix::params::db_pass,
