@@ -6,6 +6,7 @@ class zabbix::proxy(
   $zabbix_server_host      = '',
   $zabbix_server_port      = '',
   $mode                    = $zabbix::params::proxy_mode,
+  $listen_port             = '10051',
   $db_name                 = $zabbix::params::db_name,
   $db_user                 = $zabbix::params::db_user,
   $db_pass                 = $zabbix::params::db_pass,
