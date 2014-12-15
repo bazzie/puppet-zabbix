@@ -10,6 +10,7 @@ class zabbix::proxy(
   $db_user                 = $zabbix::params::db_user,
   $db_pass                 = $zabbix::params::db_pass,
   $db_host                 = $zabbix::params::db_host,
+ 
   
 ) inherits zabbix::params {
   
