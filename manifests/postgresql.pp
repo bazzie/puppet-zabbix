@@ -1,5 +1,5 @@
 class zabbix::postgresql(
-  $mytype = 'myType', 
+  $mytype = "myType", 
 ){
   
   notify {'$mytype':}
