@@ -5,8 +5,10 @@ class zabbix::postgresql(
   $cidr                 = '192.168.1.0/24',
   $method               = 'trust',
   $postgres_password    = '',  
-  $type                 = '',
+  $type                 = 'host',
 ){
+  
+  notify {'$type So am I!':}
   
   class  { 'postgresql::server': 
     ip_mask_deny_postgres_user => '0.0.0.0/32',
