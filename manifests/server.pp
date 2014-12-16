@@ -11,6 +11,17 @@ class zabbix::server(
   
   $include_dir             = '/etc/zabbix/zabbix_server.conf.d'
   
+  
+  package {'ruby-devel':
+    ensure => installed
+  }
+  
+  package {'make':
+    ensure => installed
+  }
+  
+  
+  
   if $manage_repo {
     if ! defined(Class['zabbix::repo']) {
       class { 'zabbix::repo':

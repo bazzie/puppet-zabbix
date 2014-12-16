@@ -7,7 +7,7 @@ class zabbix::postgresql(
   $method               = 'trust',
   $listen_address       = '*',
   $postgres_password    = '',  
-  
+  $type                 = 'host',
 
 ){
   
@@ -15,7 +15,7 @@ class zabbix::postgresql(
     ip_mask_deny_postgres_user => '0.0.0.0/32',
     ip_mask_allow_all_users    => '0.0.0.0/0',
     listen_addresses           => '$listen_address',
-    ipv4acls                   => ['host $db_name $db_user $cidr $method'],
+    ipv4acls                   => ["$type $db_name $db_user $cidr $method"],
     postgres_password          => '$postgres_password',
   }
 
