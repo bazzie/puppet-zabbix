@@ -6,7 +6,7 @@ class zabbix::postgresql(
   $cidr                 = '192.168.1.0/24',
   $method               = 'trust',
   $postgres_password    = '',  
-  $type                 = 'host',
+  $type                 = '',
 
 ){
   
