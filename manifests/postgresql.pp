@@ -8,7 +8,7 @@ class zabbix::postgresql(
   $type                 = 'host',
 ){
   
-  notify {'${type} So am I!':}
+  notify {'$type':}
   
   #class  { 'postgresql::server': 
   #  ip_mask_deny_postgres_user => '0.0.0.0/32',
