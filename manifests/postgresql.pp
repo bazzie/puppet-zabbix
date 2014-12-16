@@ -1,5 +1,4 @@
 class zabbix::postgresql(
-  
   $db_user              = 'zabbix',
   $db_name              = 'zabbix',
   $db_pass              = 'zabbix',
@@ -7,7 +6,6 @@ class zabbix::postgresql(
   $method               = 'trust',
   $postgres_password    = '',  
   $type                 = '',
-
 ){
   
   class  { 'postgresql::server': 
@@ -22,5 +20,4 @@ class zabbix::postgresql(
     user     => '$db_user',
     password => postgresql_password('$db_user', '$db_pass'),
   }
-  
 }
